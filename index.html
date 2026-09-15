@@ -6,12 +6,18 @@
   <title>Gerald | Portofolio Neumorphism</title>
   <style>
     :root {
-      --bg-color: #e0e5ec;
-      --text-main: #4a5568;
+      /* ================= LIGHT MODE ================= */
+      --bg-color: #FCF5EF;
+      --text-main: #2d3748; 
       --text-muted: #718096;
-      --shadow-dark: #a3b1c6;
+      
+      --shadow-dark: #d6d0cb; 
       --shadow-light: #ffffff;
-      --accent: #667eea;
+      
+      --accent: #0077FF;
+      
+      --accent-secondary: #FE7235; 
+
       --radius: 20px;
       --radius-sm: 12px;
       --shadow-base: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
@@ -21,12 +27,16 @@
     }
 
     body.dark-mode {
-      --bg-color: #292d32;
-      --text-main: #e0e5ec;
-      --text-muted: #a0aec0;
-      --shadow-dark: #1f2226;
-      --shadow-light: #33383e;
-      --accent: #8c9eff;
+      /* ================= DARK MODE ================= */
+      --bg-color: #1e2228;
+      
+      --text-main: #FCF5EF;
+      --text-muted: #9ba3af;
+      
+      --shadow-dark: #16191d;
+      --shadow-light: #262b33;
+      
+      --accent: #00C3FF;
     }
 
     * {
@@ -55,7 +65,7 @@
       gap: 32px;
     }
 
-    /* Base styles digabungkan menggunakan selector */
+    /* Base styles */
     .neu-raised, .neu-pressed, .neu-btn {
       background: var(--bg-color);
       transition: all var(--transition);
@@ -116,6 +126,7 @@
       font-weight: bold;
       color: var(--accent);
       box-shadow: var(--shadow-sm);
+      transition: color var(--transition);
     }
 
     .profile-info h1 {
@@ -154,6 +165,7 @@
     .project-card h3 {
       font-size: 18px;
       color: var(--accent);
+      transition: color var(--transition);
     }
 
     .project-card p {
@@ -208,7 +220,7 @@
   </div>
 
   <script>
-    
+   
     const USERNAME = 'Azabutayo';
     const REPOS_URL = `https://api.github.com/users/Azabutayo/repos?sort=updated&per_page=6`;
 
@@ -216,7 +228,7 @@
     const body = document.body;
     const reposContainer = document.getElementById('github-repos');
 
-    // Theme toggle
+    // Theme toggle logic
     const savedTheme = localStorage.getItem('theme') || 'light';
     if (savedTheme === 'dark') {
       body.classList.add('dark-mode');
