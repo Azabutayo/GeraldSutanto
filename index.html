@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerald | Portofolio Neumorphism</title>
+  <style>
+    :root {
+      --bg-color: #e0e5ec;
+      --text-main: #4a5568;
+      --text-muted: #718096;
+      --shadow-dark: #a3b1c6;
+      --shadow-light: #ffffff;
+      --accent: #667eea;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --shadow-base: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+      --shadow-sm: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+      --shadow-inset: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light);
+      --transition: 0.3s ease-in-out;
+    }
+
+    body.dark-mode {
+      --bg-color: #292d32;
+      --text-main: #e0e5ec;
+      --text-muted: #a0aec0;
+      --shadow-dark: #1f2226;
+      --shadow-light: #33383e;
+      --accent: #8c9eff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color var(--transition), color var(--transition);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* Base styles digabungkan menggunakan selector */
+    .neu-raised, .neu-pressed, .neu-btn {
+      background: var(--bg-color);
+      transition: all var(--transition);
+    }
+
+    .neu-raised {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-base);
+    }
+
+    .neu-pressed {
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-inset);
+    }
+
+    .neu-btn {
+      border-radius: var(--radius-sm);
+      padding: 12px 24px;
+      border: none;
+      outline: none;
+      color: var(--text-main);
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .neu-btn:hover {
+      color: var(--accent);
+    }
+
+    .neu-btn:active {
+      box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+    }
+
+    header {
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .profile-group {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .profile-info h1 {
+      font-size: 28px;
+      margin-bottom: 4px;
+    }
+
+    .profile-info p {
+      color: var(--text-muted);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .project-card h3 {
+      font-size: 18px;
+      color: var(--accent);
+    }
+
+    .project-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .tag-container {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .loader {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="neu-raised">
+      <div class="profile-group">
+        <div class="avatar">G</div>
+        <div class="profile-info">
+          <h1>Gerald</h1>
+          <p>Computer Science Student | Python & Data Analytics</p>
+        </div>
+      </div>
+      <button class="neu-btn" id="theme-toggle">🌙 Dark Mode</button>
+    </header>
+
+    <section>
+      <h2>Repositori GitHub Terbaru</h2>
+      <div class="projects-grid" id="github-repos">
+        <div class="loader">Memuat repositori...</div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Pastikan mengganti ini dengan username GitHub Anda yang sebenarnya
+    const USERNAME = 'USERNAME_GITHUB_ANDA';
+    const REPOS_URL = `https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=6`;
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const reposContainer = document.getElementById('github-repos');
+
+    // Theme toggle
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+      body.classList.add('dark-mode');
+      themeToggle.textContent = '☀️ Light Mode';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = body.classList.toggle('dark-mode');
+      themeToggle.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    // Fetch GitHub repos
+    async function loadRepos() {
+      try {
+        const response = await fetch(REPOS_URL);
+        if (!response.ok) throw new Error('Gagal mengambil data dari GitHub');
+
+        const repos = await response.json();
+        reposContainer.innerHTML = '';
+
+        if (repos.length === 0) {
+          reposContainer.innerHTML = '<p>Belum ada repositori publik.</p>';
+          return;
+        }
+
+        repos.forEach(repo => {
+          if (repo.fork) return;
+
+          const card = document.createElement('a');
+          card.href = repo.html_url;
+          card.target = '_blank';
+          card.className = 'project-card neu-raised';
+          card.innerHTML = `
+            <h3>${repo.name}</h3>
+            <p>${repo.description || 'Tidak ada deskripsi tersedia.'}</p>
+            <div class="tag-container">
+              ${repo.language ? `<span class="tag neu-pressed">${repo.language}</span>` : ''}
+            </div>
+          `;
+          reposContainer.appendChild(card);
+        });
+      } catch (error) {
+        console.error(error);
+        reposContainer.innerHTML = '<div class="loader">Gagal memuat repositori. Cek username GitHub Anda.</div>';
+      }
+    }
+
+    loadRepos();
+  </script>
+</body>
+</html>
