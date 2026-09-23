@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerald | Portfolio</title>
+  <style>
+    :root {
+      --accent-primary: #FF6F61;
+      --accent-secondary: #00BFFF;
+      --neutral: #6C757D;
+      --text-dark: #1A1A1A;
+      --text-light: #6C757D;
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8F8F8;
+      --border: #E0E0E0;
+      --transition: 0.2s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Scroll reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: var(--bg-primary);
+      padding: 60px 20px;
+      text-align: center;
+      border-bottom: 2px solid var(--border);
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .avatar-lg {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 32px;
+      background: var(--accent-primary);
+      border: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .hero .subtitle {
+      font-size: 18px;
+      color: var(--text-light);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .hero .location {
+      font-size: 14px;
+      color: var(--neutral);
+      margin-bottom: 40px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border: 0;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all var(--transition);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: white;
+      border: 2px solid var(--accent-primary);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent-primary);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-dark);
+      border: 2px solid var(--text-dark);
+    }
+
+    .btn-secondary:hover {
+      background: var(--text-dark);
+      color: white;
+    }
+
+    /* Carousel (Hero Gallery) */
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 75%;
+      overflow: hidden;
+      margin: 40px 0;
+      border: 1px solid var(--border);
+    }
+
+    .carousel-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+
+    .carousel-item {
+      width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-secondary);
+      color: var(--text-light);
+      font-size: 48px;
+      font-weight: 700;
+    }
+
+    .carousel-item.active {
+      opacity: 1;
+    }
+
+    .carousel-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .carousel-dot.active {
+      background: var(--accent-primary);
+      width: 24px;
+      border-radius: 5px;
+    }
+
+    /* Card Sections */
+    section {
+      background: var(--bg-primary);
+      margin-top: 0;
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--accent-primary);
+      display: inline-block;
+    }
+
+    /* About Section */
+    .about-text {
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .skills-label {
+      margin-top: 32px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--neutral);
+    }
+
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .skill-tag {
+      background: var(--bg-secondary);
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      color: var(--text-dark);
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      transition: all var(--transition);
+    }
+
+    .skill-tag:hover {
+      background: var(--accent-primary);
+      color: white;
+      border-color: var(--accent-primary);
+    }
+
+    /* Projects Gallery Grid */
+    .projects-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .project-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      padding: 24px;
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent-primary);
+      background: var(--bg-primary);
+      transform: translateY(-4px);
+    }
+
+    .project-card a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .project-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      color: var(--text-light);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .project-tag {
+      background: var(--bg-primary);
+      padding: 6px 12px;
+      font-size: 13px;
+      color: var(--text-light);
+      border: 1px solid var(--border);
+    }
+
+    .repo-link {
+      color: var(--accent-secondary);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 13px;
+      transition: all var(--transition);
+    }
+
+    .repo-link:hover {
+      color: var(--accent-primary);
+      text-decoration: underline;
+    }
+
+    /* Contact Section */
+    .contact-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+      background: var(--bg-secondary);
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      border: 2px solid var(--border);
+      transition: all var(--transition);
+      font-size: 15px;
+    }
+
+    .contact-link:hover {
+      background: var(--accent-primary);
+      color: white;
+      border-color: var(--accent-primary);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      color: var(--text-light);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Loading State */
+    .loader {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero {
+        padding: 60px 20px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .avatar-lg {
+        width: 80px;
+        height: 80px;
+        font-size: 40px;
+        margin-bottom: 24px;
+      }
+
+      section h2 {
+        font-size: 24px;
+      }
+
+      .hero-buttons {
+        gap: 12px;
+      }
+
+      .btn {
+        padding: 12px 24px;
+        font-size: 14px;
+      }
+
+      .contact-link {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+
+      .projects-gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section with Carousel -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="avatar-lg">G</div>
+      <h1>Gerald</h1>
+      <p class="subtitle">Computer Science Student | Python & Data Analytics</p>
+      <p class="location">Jakarta, Indonesia</p>
+
+      <!-- Image Carousel -->
+      <div class="carousel">
+        <div class="carousel-inner" id="carouselInner">
+          <div class="carousel-item active">Portfolio Showcase</div>
+          <div class="carousel-item">Projects & Experience</div>
+          <div class="carousel-item">Data & Analytics</div>
+        </div>
+        <div class="carousel-controls" id="carouselControls"></div>
+      </div>
+
+      <div class="hero-buttons">
+        <button class="btn btn-primary" id="contact-hero">Get in touch</button>
+        <button class="btn btn-secondary" id="projects-hero">View my work</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about" class="reveal">
+    <div class="section-wrapper">
+      <h2>About</h2>
+      <p class="about-text">
+        Saya Gerald, mahasiswa Computer Science dengan passion mendalam di bidang pengembangan perangkat lunak dan analisis data. Saya terbiasa merancang solusi berbasis data menggunakan Python dan SQL, mulai dari pemodelan machine learning hingga visualisasi data interaktif.
+      </p>
+      <p class="about-text">
+        Saya menikmati memecahkan masalah melalui kode dan selalu antusias mengeksplorasi teknologi baru, baik itu merancang arsitektur database yang efisien maupun membangun aplikasi analitik yang impactful.
+      </p>
+      
+      <p class="skills-label">Skills</p>
+      <div class="skills-list">
+        <div class="skill-tag">Python</div>
+        <div class="skill-tag">SQL</div>
+        <div class="skill-tag">Data Analytics</div>
+        <div class="skill-tag">Machine Learning</div>
+        <div class="skill-tag">JavaScript</div>
+        <div class="skill-tag">Laravel</div>
+        <div class="skill-tag">PySpark</div>
+        <div class="skill-tag">Pandas</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section with Gallery Grid -->
+  <section id="projects" class="reveal">
+    <div class="section-wrapper">
+      <h2>Projects</h2>
+      <div class="projects-gallery" id="github-repos">
+        <div class="loader">Memuat repositori...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="reveal">
+    <div class="section-wrapper">
+      <h2>Get in touch</h2>
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/geraldsutanto" target="_blank" rel="noopener noreferrer" class="contact-link">
+          💼 LinkedIn
+        </a>
+        <a href="https://github.com/Azabutayo" target="_blank" rel="noopener noreferrer" class="contact-link">
+          🐙 GitHub
+        </a>
+        <a href="mailto:gerald@example.com" class="contact-link">
+          ✉️ Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Gerald. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll Reveal Animation (Intersection Observer)
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Carousel (Hero Gallery)
+    const carouselInner = document.getElementById('carouselInner');
+    const carouselControls = document.getElementById('carouselControls');
+    const items = carouselInner.querySelectorAll('.carousel-item');
+    let currentIndex = 0;
+
+    items.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
+      dot.addEventListener('click', () => goToSlide(index));
+      carouselControls.appendChild(dot);
+    });
+
+    function goToSlide(index) {
+      currentIndex = index;
+      updateCarousel();
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+    }
+
+    function updateCarousel() {
+      items.forEach((item, index) => {
+        item.classList.toggle('active', index === currentIndex);
+      });
+      document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    // Auto rotate carousel every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // GitHub API - Fetch Repos
+    const USERNAME = 'Azabutayo';
+    const REPOS_URL = `https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=6`;
+    const reposContainer = document.getElementById('github-repos');
+
+    async function loadRepos() {
+      try {
+        const response = await fetch(REPOS_URL);
+        if (!response.ok) throw new Error('Failed to fetch repos');
+
+        const repos = await response.json();
+        reposContainer.innerHTML = '';
+
+        if (!repos.length) {
+          reposContainer.innerHTML = '<p style="color: var(--text-light); grid-column: 1/-1;">No public repositories.</p>';
+          return;
+        }
+
+        repos.forEach(repo => {
+          if (repo.fork) return;
+
+          const card = document.createElement('div');
+          card.className = 'project-card reveal';
+          card.innerHTML = `
+            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
+              <h3>${repo.name}</h3>
+            </a>
+            <p>${repo.description || 'No description available.'}</p>
+            <div class="project-tags">
+              ${repo.language ? `<span class="project-tag">${repo.language}</span>` : ''}
+              <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="repo-link">View on GitHub →</a>
+            </div>
+          `;
+          reposContainer.appendChild(card);
+          
+          // Observe new cards for reveal animation
+          observer.observe(card);
+        });
+      } catch (error) {
+        console.error(error);
+        reposContainer.innerHTML = '<div class="loader">Failed to load repositories.</div>';
+      }
+    }
+
+    // Smooth scroll navigation
+    document.getElementById('contact-hero').addEventListener('click', () => {
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('projects-hero').addEventListener('click', () => {
+      document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Load repos on page load
+    loadRepos();
+  </script>
+</body>
+</html>
