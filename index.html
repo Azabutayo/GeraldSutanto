@@ -6,544 +6,272 @@
   <title>Gerald | Portfolio</title>
   <style>
     :root {
-      --accent-primary: #FF6F61;
-      --accent-secondary: #00BFFF;
-      --neutral: #6C757D;
-      --text-dark: #1A1A1A;
-      --text-light: #6C757D;
-      --bg-primary: #FFFFFF;
-      --bg-secondary: #F8F8F8;
+      --accent: #FF6F61;
+      --accent-2: #00BFFF;
+      --muted: #6C757D;
+      --text: #1A1A1A;
+      --bg: #FFFFFF;
+      --bg-2: #F8F8F8;
       --border: #E0E0E0;
-      --transition: 0.2s ease;
+      --t: 0.2s ease;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    html { scroll-behavior: smooth; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-dark);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
 
-    /* Scroll reveal animation */
     .reveal {
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
+    .reveal.active { opacity: 1; transform: none; }
 
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Hero Section */
+    /* Hero */
     .hero {
-      background: var(--bg-primary);
       padding: 60px 20px;
       text-align: center;
       border-bottom: 2px solid var(--border);
-      position: relative;
     }
-
-    .hero-content {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .avatar-lg {
+    .avatar {
       width: 120px;
       height: 120px;
       margin: 0 auto 32px;
       border-radius: 50%;
-      border: 4px solid var(--accent-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 4px solid var(--accent);
       overflow: hidden;
-      object-fit: cover;
-      background: var(--bg-secondary);
+      background: var(--bg-2);
     }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero h1 { font-size: 42px; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.5px; }
+    .subtitle { font-size: 18px; color: var(--muted); margin-bottom: 8px; font-weight: 500; }
+    .location { font-size: 14px; color: var(--muted); margin-bottom: 40px; }
 
-    .avatar-lg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 12px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-
-    .hero .subtitle {
-      font-size: 18px;
-      color: var(--text-light);
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-
-    .hero .location {
-      font-size: 14px;
-      color: var(--neutral);
-      margin-bottom: 40px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .btn {
-      padding: 14px 28px;
-      border: 0;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 15px;
-      transition: all var(--transition);
-      text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      padding: 14px 28px;
+      border: 2px solid;
+      background: none;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--t);
     }
+    .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn-primary:hover { background: transparent; color: var(--accent); }
+    .btn-secondary { border-color: var(--text); color: var(--text); }
+    .btn-secondary:hover { background: var(--text); color: #fff; }
 
-    .btn-primary {
-      background: var(--accent-primary);
-      color: white;
-      border: 2px solid var(--accent-primary);
-    }
-
-    .btn-primary:hover {
-      background: transparent;
-      color: var(--accent-primary);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-dark);
-      border: 2px solid var(--text-dark);
-    }
-
-    .btn-secondary:hover {
-      background: var(--text-dark);
-      color: white;
-    }
-
-    /* Card Sections */
-    section {
-      background: var(--bg-primary);
-      margin-top: 0;
-      padding: 48px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    section:last-of-type {
-      border-bottom: none;
-    }
-
-    .section-wrapper {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
+    /* Sections */
+    section { padding: 48px 0; border-bottom: 1px solid var(--border); }
     section h2 {
       font-size: 28px;
       font-weight: 700;
       margin-bottom: 32px;
       padding-bottom: 12px;
-      border-bottom: 2px solid var(--accent-primary);
+      border-bottom: 2px solid var(--accent);
       display: inline-block;
     }
+    .section-title-plain { display: block; border-bottom: none; padding-bottom: 0; margin-bottom: 20px; }
 
-    /* About Section */
-    .about-text {
-      color: var(--text-light);
-      line-height: 1.8;
-      margin-bottom: 20px;
-      font-size: 16px;
-    }
-
+    .about-text { color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
     .skills-label {
-      margin-top: 32px;
-      margin-bottom: 16px;
+      margin: 32px 0 16px;
       font-size: 14px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: var(--neutral);
+      color: var(--muted);
     }
-
-    .skills-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-    }
-
+    .skills-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
     .skill-tag {
-      background: var(--bg-secondary);
+      background: var(--bg-2);
       padding: 12px 16px;
       border: 1px solid var(--border);
-      color: var(--text-dark);
       font-size: 14px;
       font-weight: 500;
       text-align: center;
-      transition: all var(--transition);
+      transition: all var(--t);
+    }
+    .skill-tag:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .skill-highlight {
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      font-weight: 700;
     }
 
-    .skill-tag:hover {
-      background: var(--accent-primary);
-      color: white;
-      border-color: var(--accent-primary);
-    }
-
-    /* Featured Projects Grid */
-    .featured-projects-grid {
+    /* Cards (featured + GitHub) */
+    .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
       gap: 24px;
       margin-top: 32px;
     }
-
-    .featured-project {
-      background: var(--bg-secondary);
-      border: 2px solid var(--accent-primary);
-      padding: 32px;
-      transition: all var(--transition);
+    .featured, .project-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      padding: 24px;
+      transition: all var(--t);
     }
-
-    .featured-project:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 16px rgba(255, 111, 97, 0.15);
-    }
+    .featured { border: 2px solid var(--accent); padding: 32px; }
+    .featured:hover { transform: translateY(-4px); }
+    .project-card:hover { transform: translateY(-4px); border-color: var(--accent); background: var(--bg); }
 
     .featured-badge {
       display: inline-block;
-      background: var(--accent-primary);
-      color: white;
+      background: var(--accent);
+      color: #fff;
       padding: 6px 12px;
       font-size: 12px;
       font-weight: 700;
       margin-bottom: 16px;
       text-transform: uppercase;
     }
+    .featured h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+    .project-meta { color: var(--accent); font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+    .featured-desc { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 20px; }
 
-    .featured-project h3 {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 12px;
-    }
-
-    .featured-project .subtitle {
-      color: var(--accent-primary);
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .featured-project-desc {
-      color: var(--text-light);
-      font-size: 15px;
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .project-highlights {
+    .highlights {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
       gap: 12px;
       margin-bottom: 20px;
     }
-
-    .highlight {
-      background: var(--bg-primary);
-      padding: 12px;
-      border-left: 3px solid var(--accent-primary);
-    }
-
+    .highlight { background: var(--bg); padding: 12px; border-left: 3px solid var(--accent); }
     .highlight-label {
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
-      color: var(--neutral);
+      color: var(--muted);
       margin-bottom: 6px;
     }
+    .highlight-value { font-size: 16px; font-weight: 700; }
 
-    .highlight-value {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-
-    .project-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
-
+    .project-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
     .project-links a {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       padding: 10px 14px;
-      background: var(--accent-primary);
-      color: white;
+      background: var(--accent);
+      color: #fff;
       text-decoration: none;
-      font-weight: 600;
-      transition: all var(--transition);
       font-size: 13px;
-    }
-
-    .project-links a:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-    }
-
-    .lang-toggle {
-      display: inline-flex;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .lang-btn {
-      padding: 6px 12px;
-      border: 1px solid var(--border);
-      background: var(--bg-primary);
-      cursor: pointer;
-      font-size: 12px;
       font-weight: 600;
-      transition: all var(--transition);
+      transition: all var(--t);
     }
+    .project-links a:hover { opacity: 0.9; transform: translateY(-2px); }
 
-    .lang-btn.active {
-      background: var(--accent-primary);
-      color: white;
-      border-color: var(--accent-primary);
-    }
-
-    .lang-btn:hover {
-      background: var(--accent-primary);
-      color: white;
-      border-color: var(--accent-primary);
-    }
-
-    .project-description {
-      display: none;
-    }
-
-    .project-description.active {
-      display: block;
-    }
-
-    /* GitHub Projects Grid */
-    .projects-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
-      margin-top: 32px;
-    }
-
-    .project-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      padding: 24px;
-      transition: all var(--transition);
-      cursor: pointer;
-    }
-
-    .project-card:hover {
-      border-color: var(--accent-primary);
-      background: var(--bg-primary);
-      transform: translateY(-4px);
-    }
-
-    .project-card a {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-
-    .project-card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--accent-primary);
-      margin-bottom: 12px;
-    }
-
-    .project-card p {
-      color: var(--text-light);
-      font-size: 15px;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .project-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
+    .project-card h3 { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 12px; }
+    .project-card a { text-decoration: none; color: inherit; display: block; }
+    .project-card p { color: var(--muted); font-size: 15px; margin-bottom: 16px; }
+    .project-tags { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
     .project-tag {
-      background: var(--bg-primary);
+      background: var(--bg);
       padding: 6px 12px;
       font-size: 13px;
-      color: var(--text-light);
+      color: var(--muted);
       border: 1px solid var(--border);
     }
+    .repo-link { color: var(--accent-2); font-weight: 600; text-decoration: none; font-size: 13px; }
+    .repo-link:hover { color: var(--accent); text-decoration: underline; }
 
-    .repo-link {
-      color: var(--accent-secondary);
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 13px;
-      transition: all var(--transition);
+    .state-message { color: var(--muted); grid-column: 1 / -1; padding: 24px 0; }
+
+    /* Contact */
+    .contact-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 12px;
     }
-
-    .repo-link:hover {
-      color: var(--accent-primary);
-      text-decoration: underline;
-    }
-
-    /* Contact Section */
+    .contact-description { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 40px; }
     .contact-links {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: 20px;
     }
-
     .contact-link {
       display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 20px;
-      background: var(--bg-secondary);
-      text-decoration: none;
-      color: var(--text-dark);
-      font-weight: 600;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 140px;
+      padding: clamp(20px, 4vw, 28px);
       border: 2px solid var(--border);
-      transition: all var(--transition);
-      font-size: 15px;
+      color: var(--text);
+      text-decoration: none;
+      position: relative;
+      transition: all var(--t);
     }
-
-    .contact-link:hover {
-      background: var(--accent-primary);
-      color: white;
-      border-color: var(--accent-primary);
+    .contact-link::after {
+      content: '↗';
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 20px;
+      opacity: 0.6;
     }
+    .contact-link:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .contact-link:hover::after { opacity: 1; }
+    .contact-icon { font-size: 24px; margin-bottom: 12px; }
+    .contact-platform {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .contact-handle { font-size: 18px; font-weight: 700; }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 32px 20px;
-      color: var(--text-light);
+      color: var(--muted);
       font-size: 13px;
       border-top: 1px solid var(--border);
     }
 
-    /* Loading State */
-    .loader {
-      text-align: center;
-      padding: 40px;
-      color: var(--text-light);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .featured-projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-highlights {
-        grid-template-columns: 1fr;
-      }
-    }
-
+    /* Mobile */
     @media (max-width: 640px) {
-      .hero {
-        padding: 60px 20px;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
-
-      .avatar-lg {
-        width: 100px;
-        height: 100px;
-      }
-
-      section h2 {
-        font-size: 24px;
-      }
-
-      .hero-buttons {
-        gap: 12px;
-      }
-
-      .btn {
-        padding: 12px 24px;
-        font-size: 14px;
-      }
-
-      .contact-link {
-        padding: 12px 16px;
-        font-size: 14px;
-      }
-
-      .projects-gallery {
-        grid-template-columns: 1fr;
-      }
-
-      .featured-project {
-        padding: 20px;
-      }
-
-      .featured-project h3 {
-        font-size: 18px;
-      }
+      .hero { padding: 60px 20px; }
+      .hero h1 { font-size: 32px; }
+      .avatar { width: 100px; height: 100px; }
+      section h2 { font-size: 24px; }
+      .btn { padding: 12px 24px; font-size: 14px; }
+      .featured { padding: 20px; }
+      .featured h3 { font-size: 18px; }
     }
   </style>
 </head>
 <body>
-  <!-- Hero Section -->
-  <div class="hero">
-    <div class="hero-content">
-      <div class="avatar-lg">
-        <img src="profile.png" alt="Gerald">
-      </div>
-      <h1>Gerald</h1>
-      <p class="subtitle">Computer Science Student | Python & Data Analytics</p>
-      <p class="location">Jakarta, Indonesia</p>
-
-      <div class="hero-buttons">
-        <button class="btn btn-primary" id="contact-hero">Get in touch</button>
-        <button class="btn btn-secondary" id="projects-hero">View my work</button>
-      </div>
+  <header class="hero">
+    <div class="avatar"><img src="profile.png" alt="Foto Gerald"></div>
+    <h1>Gerald</h1>
+    <p class="subtitle">Computer Science Student | Python & Data Analytics</p>
+    <p class="location">Jakarta, Indonesia</p>
+    <div class="hero-buttons">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-secondary" href="#projects">View my work</a>
     </div>
-  </div>
+  </header>
 
-  <!-- About Section -->
-  <section id="about" class="reveal">
-    <div class="section-wrapper">
+  <main class="wrap">
+    <section id="about" class="reveal">
       <h2>About</h2>
       <p class="about-text">
         Saya Gerald, mahasiswa Computer Science dengan passion mendalam di bidang pengembangan perangkat lunak dan analisis data. Saya terbiasa merancang solusi berbasis data menggunakan Python dan SQL, mulai dari pemodelan machine learning hingga visualisasi data interaktif.
@@ -551,154 +279,109 @@
       <p class="about-text">
         Saya menikmati memecahkan masalah melalui kode dan selalu antusias mengeksplorasi teknologi baru, baik itu merancang arsitektur database yang efisien maupun membangun aplikasi analitik yang impactful.
       </p>
-      
+
       <p class="skills-label">Skills</p>
       <div class="skills-list">
+        <div class="skill-tag skill-highlight">SQL</div>
+        <div class="skill-tag skill-highlight">Data Analytics</div>
         <div class="skill-tag">Python</div>
-        <div class="skill-tag">SQL</div>
-        <div class="skill-tag">Data Analytics</div>
         <div class="skill-tag">Machine Learning</div>
         <div class="skill-tag">JavaScript</div>
         <div class="skill-tag">Laravel</div>
         <div class="skill-tag">PySpark</div>
         <div class="skill-tag">Pandas</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Featured Projects Section -->
-  <section id="featured-projects" class="reveal">
-    <div class="section-wrapper">
+    <section id="featured-projects" class="reveal">
       <h2>Featured Projects</h2>
-      
-      <div class="featured-projects-grid">
-        <!-- Project 1: Data Engineering -->
-        <div class="featured-project">
+      <div class="card-grid">
+        <article class="featured">
           <span class="featured-badge">⭐ Data Engineering</span>
           <h3>Data Pipeline & ETL</h3>
-          <p class="subtitle">Pentaho + MySQL + Power BI</p>
-
-          <div class="project-description active">
-            <div class="featured-project-desc">
-              <strong>Implementasi pipeline data lengkap (ETL)</strong> pada dataset retail store menggunakan Pentaho Data Integration. Dataset 12,575 transaksi diproses melalui tahap ingestion, cleaning, dimensional modeling, dan visualisasi Power BI.
-            </div>
-
-            <div class="project-highlights">
-              <div class="highlight">
-                <div class="highlight-label">Total Revenue</div>
-                <div class="highlight-value">1.55M</div>
-              </div>
-              <div class="highlight">
-                <div class="highlight-label">Valid Transactions</div>
-                <div class="highlight-value">11.97K</div>
-              </div>
-              <div class="highlight">
-                <div class="highlight-label">Avg/Transaction</div>
-                <div class="highlight-value">129.77</div>
-              </div>
-              <div class="highlight">
-                <div class="highlight-label">Total Units</div>
-                <div class="highlight-value">66K</div>
-              </div>
-            </div>
-
-            <div class="featured-project-desc">
-              <strong>Tahapan:</strong> Data Ingestion → Cleaning (11,971 valid rows) → Star Schema (1 Fact + 5 Dimension) → Power BI Dashboard
-            </div>
+          <p class="project-meta">Pentaho + MySQL + Power BI</p>
+          <p class="featured-desc">
+            <strong>Implementasi pipeline data lengkap (ETL)</strong> pada dataset retail store menggunakan Pentaho Data Integration. Dataset 12,575 transaksi diproses melalui tahap ingestion, cleaning, dimensional modeling, dan visualisasi Power BI.
+          </p>
+          <div class="highlights">
+            <div class="highlight"><div class="highlight-label">Total Revenue</div><div class="highlight-value">1.55M</div></div>
+            <div class="highlight"><div class="highlight-label">Valid Transactions</div><div class="highlight-value">11.97K</div></div>
+            <div class="highlight"><div class="highlight-label">Avg/Transaction</div><div class="highlight-value">129.77</div></div>
+            <div class="highlight"><div class="highlight-label">Total Units</div><div class="highlight-value">66K</div></div>
           </div>
-
+          <p class="featured-desc">
+            <strong>Tahapan:</strong> Data Ingestion → Cleaning (11,971 valid rows) → Star Schema (1 Fact + 5 Dimension) → Power BI Dashboard
+          </p>
           <div class="project-links">
             <a href="Laporan_Data_Engineering.pdf" download>📄 PDF Report</a>
             <a href="RetailDashboard_-_Copy.pbix" download>📊 PBIX File</a>
           </div>
-        </div>
+        </article>
 
-        <!-- Project 2: Cafe Sales Analytics -->
-        <div class="featured-project">
+        <article class="featured">
           <span class="featured-badge">⭐ Data Analytics</span>
           <h3>Cafe Sales Analytics</h3>
-          <p class="subtitle">Python + EDA + Forecasting</p>
-
-          <div class="project-description active">
-            <div class="featured-project-desc">
-              <strong>Exploratory Data Analysis & Predictive Forecasting</strong> pada dataset penjualan kafe dengan 9,227 records. Menggunakan EDA, statistical testing, dan Random Forest Regressor untuk forecasting penjualan harian.
-            </div>
-
-            <div class="project-highlights">
-              <div class="highlight">
-                <div class="highlight-label">Dataset Size</div>
-                <div class="highlight-value">9,227</div>
-              </div>
-              <div class="highlight">
-                <div class="highlight-label">Data Quality</div>
-                <div class="highlight-value">Clean</div>
-              </div>
-              <div class="highlight">
-                <div class="highlight-label">Model: MAPE</div>
-                <div class="highlight-value">18%</div>
-              </div>
-              <div class="highlight">
-                <div class="highlight-label">Variables</div>
-                <div class="highlight-value">12</div>
-              </div>
-            </div>
-
-            <div class="featured-project-desc">
-              <strong>Insights:</strong> Sandwich & Smoothie top revenue, daily sales ~1300 unit/hari, rolling trend bulanan dengan segmentasi high/medium/low tier produksi.
-            </div>
+          <p class="project-meta">Python + EDA + Forecasting</p>
+          <p class="featured-desc">
+            <strong>Exploratory Data Analysis & Predictive Forecasting</strong> pada dataset penjualan kafe dengan 9,227 records. Menggunakan EDA, statistical testing, dan Random Forest Regressor untuk forecasting penjualan harian.
+          </p>
+          <div class="highlights">
+            <div class="highlight"><div class="highlight-label">Dataset Size</div><div class="highlight-value">9,227</div></div>
+            <div class="highlight"><div class="highlight-label">Data Quality</div><div class="highlight-value">Clean</div></div>
+            <div class="highlight"><div class="highlight-label">Model: MAPE</div><div class="highlight-value">18%</div></div>
+            <div class="highlight"><div class="highlight-label">Variables</div><div class="highlight-value">12</div></div>
           </div>
-
+          <p class="featured-desc">
+            <strong>Insights:</strong> Sandwich & Smoothie top revenue, daily sales ~1300 unit/hari, rolling trend bulanan dengan segmentasi high/medium/low tier produksi.
+          </p>
           <div class="project-links">
-            <a href="Data_Analytics_Gerald_Amadeo_Passover_Sutanto_-_2802457740.pdf" download>📄 PDF Report</a>
-            <a href="Group_4_DA_UAS.ipynb" download>📓 Jupyter Notebook</a>
+            <a href="Data_Analytics_Cafe_Sales.pdf" download>📄 PDF Report</a>
+            <a href="Group_4_DA.ipynb" download>📓 Jupyter Notebook</a>
             <a href="clean_cafe_sales.csv" download>📊 CSV Data</a>
           </div>
-        </div>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- GitHub Projects Section -->
-  <section id="projects" class="reveal">
-    <div class="section-wrapper">
+    <section id="projects" class="reveal">
       <h2>GitHub Projects</h2>
-      <div class="projects-gallery" id="github-repos">
-        <div class="loader">Memuat repositori...</div>
+      <div class="card-grid" id="github-repos">
+        <div class="state-message">Memuat repositori...</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="reveal">
-    <div class="section-wrapper">
-      <h2>Get in touch</h2>
+    <section id="contact" class="reveal">
+      <p class="contact-label">03 — Contact</p>
+      <h2 class="section-title-plain">Let's build something intentional.</h2>
+      <p class="contact-description">
+        Recruiter, engineer, or fellow student — if you have a problem worth solving, my inbox is open.
+      </p>
       <div class="contact-links">
-        <a href="https://linkedin.com/in/geraldsutanto" target="_blank" rel="noopener noreferrer" class="contact-link">
-          💼 LinkedIn
+        <a class="contact-link" href="https://linkedin.com/in/geraldsutanto" target="_blank" rel="noopener noreferrer">
+          <div class="contact-icon">💼</div>
+          <div class="contact-platform">LinkedIn</div>
+          <div class="contact-handle">geraldsutanto</div>
         </a>
-        <a href="https://github.com/Azabutayo" target="_blank" rel="noopener noreferrer" class="contact-link">
-          🐙 GitHub
+        <a class="contact-link" href="https://github.com/Azabutayo" target="_blank" rel="noopener noreferrer">
+          <div class="contact-icon">🐙</div>
+          <div class="contact-platform">GitHub</div>
+          <div class="contact-handle">@Azabutayo</div>
         </a>
-        <a href="mailto:gerald.sutanto@binus.ac.id" class="contact-link">
-          ✉️ Email
+        <a class="contact-link" href="mailto:gerald.sutanto@binus.ac.id">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-platform">Email</div>
+          <div class="contact-handle">gerald.sutanto@binus.ac.id</div>
         </a>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
     <p>&copy; <span id="year"></span> Gerald. All rights reserved.</p>
   </footer>
 
   <script>
-    // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Scroll Reveal Animation
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -707,60 +390,74 @@
           observer.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // GitHub API
     const USERNAME = 'Azabutayo';
-    const REPOS_URL = `https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=6`;
     const reposContainer = document.getElementById('github-repos');
 
     async function loadRepos() {
-      try {
-        const response = await fetch(REPOS_URL);
-        if (!response.ok) throw new Error('Failed to fetch repos');
+      const url = `https://api.github.com/users/Azabutayo/repos?sort=updated&per_page=6`;
 
-        const repos = await response.json();
+      try {
+        const response = await fetch(url, {
+          headers: { Accept: 'application/vnd.github+json' }
+        });
+        if (!response.ok) throw new Error(`GitHub API status ${response.status}`);
+
+        const repos = (await response.json()).filter(repo => !repo.fork);
         reposContainer.innerHTML = '';
 
         if (!repos.length) {
-          reposContainer.innerHTML = '<p style="color: var(--text-light); grid-column: 1/-1;">No public repositories.</p>';
+          reposContainer.innerHTML = '<p class="state-message">Belum ada repositori publik.</p>';
           return;
         }
 
         repos.forEach(repo => {
-          if (repo.fork) return;
-
           const card = document.createElement('div');
           card.className = 'project-card reveal';
-          card.innerHTML = `
-            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
-              <h3>${repo.name}</h3>
-            </a>
-            <p>${repo.description || 'No description available.'}</p>
-            <div class="project-tags">
-              ${repo.language ? `<span class="project-tag">${repo.language}</span>` : ''}
-              <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="repo-link">View on GitHub →</a>
-            </div>
-          `;
+
+          const title = document.createElement('a');
+          title.href = repo.html_url;
+          title.target = '_blank';
+          title.rel = 'noopener noreferrer';
+          const h3 = document.createElement('h3');
+          h3.textContent = repo.name;
+          title.appendChild(h3);
+
+          const desc = document.createElement('p');
+          desc.textContent = repo.description || 'Tidak ada deskripsi.';
+
+          const tags = document.createElement('div');
+          tags.className = 'project-tags';
+          if (repo.language) {
+            const tag = document.createElement('span');
+            tag.className = 'project-tag';
+            tag.textContent = repo.language;
+            tags.appendChild(tag);
+          }
+          const view = document.createElement('a');
+          view.href = repo.html_url;
+          view.target = '_blank';
+          view.rel = 'noopener noreferrer';
+          view.className = 'repo-link';
+          view.textContent = 'View on GitHub →';
+          tags.appendChild(view);
+
+          card.append(title, desc, tags);
           reposContainer.appendChild(card);
           observer.observe(card);
         });
       } catch (error) {
         console.error(error);
-        reposContainer.innerHTML = '<div class="loader">Failed to load repositories.</div>';
+        reposContainer.innerHTML = `
+          <div class="state-message">
+            Repositori tidak bisa dimuat (${error.message}).
+            <a class="repo-link" href="https://github.com/Azabutayo" target="_blank" rel="noopener noreferrer">Lihat profil GitHub →</a>
+          </div>`;
       }
     }
-
-    // Smooth scroll navigation
-    document.getElementById('contact-hero').addEventListener('click', () => {
-      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-    });
-
-    document.getElementById('projects-hero').addEventListener('click', () => {
-      document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
-    });
 
     loadRepos();
   </script>
