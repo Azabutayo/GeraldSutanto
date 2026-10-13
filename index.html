@@ -63,17 +63,23 @@
     }
 
     .avatar-lg {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       margin: 0 auto 32px;
-      background: var(--accent-primary);
-      border: 0;
+      border-radius: 50%;
+      border: 4px solid var(--accent-primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 48px;
-      font-weight: 700;
-      color: white;
+      overflow: hidden;
+      object-fit: cover;
+      background: var(--bg-secondary);
+    }
+
+    .avatar-lg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .hero h1 {
@@ -136,71 +142,6 @@
     .btn-secondary:hover {
       background: var(--text-dark);
       color: white;
-    }
-
-    /* Carousel (Hero Gallery) */
-    .carousel {
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-bottom: 75%;
-      overflow: hidden;
-      margin: 40px 0;
-      border: 1px solid var(--border);
-    }
-
-    .carousel-inner {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-    }
-
-    .carousel-item {
-      width: 100%;
-      height: 100%;
-      flex-shrink: 0;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-secondary);
-      color: var(--text-light);
-      font-size: 48px;
-      font-weight: 700;
-    }
-
-    .carousel-item.active {
-      opacity: 1;
-    }
-
-    .carousel-controls {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 12px;
-      z-index: 10;
-    }
-
-    .carousel-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--border);
-      border: none;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .carousel-dot.active {
-      background: var(--accent-primary);
-      width: 24px;
-      border-radius: 5px;
     }
 
     /* Card Sections */
@@ -271,7 +212,147 @@
       border-color: var(--accent-primary);
     }
 
-    /* Projects Gallery Grid */
+    /* Featured Projects Grid */
+    .featured-projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .featured-project {
+      background: var(--bg-secondary);
+      border: 2px solid var(--accent-primary);
+      padding: 32px;
+      transition: all var(--transition);
+    }
+
+    .featured-project:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px rgba(255, 111, 97, 0.15);
+    }
+
+    .featured-badge {
+      display: inline-block;
+      background: var(--accent-primary);
+      color: white;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .featured-project h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .featured-project .subtitle {
+      color: var(--accent-primary);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .featured-project-desc {
+      color: var(--text-light);
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .project-highlights {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      background: var(--bg-primary);
+      padding: 12px;
+      border-left: 3px solid var(--accent-primary);
+    }
+
+    .highlight-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--neutral);
+      margin-bottom: 6px;
+    }
+
+    .highlight-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      background: var(--accent-primary);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all var(--transition);
+      font-size: 13px;
+    }
+
+    .project-links a:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .lang-btn {
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-primary);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all var(--transition);
+    }
+
+    .lang-btn.active {
+      background: var(--accent-primary);
+      color: white;
+      border-color: var(--accent-primary);
+    }
+
+    .lang-btn:hover {
+      background: var(--accent-primary);
+      color: white;
+      border-color: var(--accent-primary);
+    }
+
+    .project-description {
+      display: none;
+    }
+
+    .project-description.active {
+      display: block;
+    }
+
+    /* GitHub Projects Grid */
     .projects-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -386,6 +467,16 @@
     }
 
     /* Responsive */
+    @media (max-width: 768px) {
+      .featured-projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-highlights {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 640px) {
       .hero {
         padding: 60px 20px;
@@ -396,10 +487,8 @@
       }
 
       .avatar-lg {
-        width: 80px;
-        height: 80px;
-        font-size: 40px;
-        margin-bottom: 24px;
+        width: 100px;
+        height: 100px;
       }
 
       section h2 {
@@ -423,27 +512,27 @@
       .projects-gallery {
         grid-template-columns: 1fr;
       }
+
+      .featured-project {
+        padding: 20px;
+      }
+
+      .featured-project h3 {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Hero Section with Carousel -->
+  <!-- Hero Section -->
   <div class="hero">
     <div class="hero-content">
-      <div class="avatar-lg">G</div>
+      <div class="avatar-lg">
+        <img src="profile.png" alt="Gerald">
+      </div>
       <h1>Gerald</h1>
       <p class="subtitle">Computer Science Student | Python & Data Analytics</p>
       <p class="location">Jakarta, Indonesia</p>
-
-      <!-- Image Carousel -->
-      <div class="carousel">
-        <div class="carousel-inner" id="carouselInner">
-          <div class="carousel-item active">Portfolio Showcase</div>
-          <div class="carousel-item">Projects & Experience</div>
-          <div class="carousel-item">Data & Analytics</div>
-        </div>
-        <div class="carousel-controls" id="carouselControls"></div>
-      </div>
 
       <div class="hero-buttons">
         <button class="btn btn-primary" id="contact-hero">Get in touch</button>
@@ -477,10 +566,102 @@
     </div>
   </section>
 
-  <!-- Projects Section with Gallery Grid -->
+  <!-- Featured Projects Section -->
+  <section id="featured-projects" class="reveal">
+    <div class="section-wrapper">
+      <h2>Featured Projects</h2>
+      
+      <div class="featured-projects-grid">
+        <!-- Project 1: Data Engineering -->
+        <div class="featured-project">
+          <span class="featured-badge">⭐ Data Engineering</span>
+          <h3>Data Pipeline & ETL</h3>
+          <p class="subtitle">Pentaho + MySQL + Power BI</p>
+
+          <div class="project-description active">
+            <div class="featured-project-desc">
+              <strong>Implementasi pipeline data lengkap (ETL)</strong> pada dataset retail store menggunakan Pentaho Data Integration. Dataset 12,575 transaksi diproses melalui tahap ingestion, cleaning, dimensional modeling, dan visualisasi Power BI.
+            </div>
+
+            <div class="project-highlights">
+              <div class="highlight">
+                <div class="highlight-label">Total Revenue</div>
+                <div class="highlight-value">1.55M</div>
+              </div>
+              <div class="highlight">
+                <div class="highlight-label">Valid Transactions</div>
+                <div class="highlight-value">11.97K</div>
+              </div>
+              <div class="highlight">
+                <div class="highlight-label">Avg/Transaction</div>
+                <div class="highlight-value">129.77</div>
+              </div>
+              <div class="highlight">
+                <div class="highlight-label">Total Units</div>
+                <div class="highlight-value">66K</div>
+              </div>
+            </div>
+
+            <div class="featured-project-desc">
+              <strong>Tahapan:</strong> Data Ingestion → Cleaning (11,971 valid rows) → Star Schema (1 Fact + 5 Dimension) → Power BI Dashboard
+            </div>
+          </div>
+
+          <div class="project-links">
+            <a href="Laporan_Data_Engineering.pdf" download>📄 PDF Report</a>
+            <a href="RetailDashboard_-_Copy.pbix" download>📊 PBIX File</a>
+          </div>
+        </div>
+
+        <!-- Project 2: Cafe Sales Analytics -->
+        <div class="featured-project">
+          <span class="featured-badge">⭐ Data Analytics</span>
+          <h3>Cafe Sales Analytics</h3>
+          <p class="subtitle">Python + EDA + Forecasting</p>
+
+          <div class="project-description active">
+            <div class="featured-project-desc">
+              <strong>Exploratory Data Analysis & Predictive Forecasting</strong> pada dataset penjualan kafe dengan 9,227 records. Menggunakan EDA, statistical testing, dan Random Forest Regressor untuk forecasting penjualan harian.
+            </div>
+
+            <div class="project-highlights">
+              <div class="highlight">
+                <div class="highlight-label">Dataset Size</div>
+                <div class="highlight-value">9,227</div>
+              </div>
+              <div class="highlight">
+                <div class="highlight-label">Data Quality</div>
+                <div class="highlight-value">Clean</div>
+              </div>
+              <div class="highlight">
+                <div class="highlight-label">Model: MAPE</div>
+                <div class="highlight-value">18%</div>
+              </div>
+              <div class="highlight">
+                <div class="highlight-label">Variables</div>
+                <div class="highlight-value">12</div>
+              </div>
+            </div>
+
+            <div class="featured-project-desc">
+              <strong>Insights:</strong> Sandwich & Smoothie top revenue, daily sales ~1300 unit/hari, rolling trend bulanan dengan segmentasi high/medium/low tier produksi.
+            </div>
+          </div>
+
+          <div class="project-links">
+            <a href="Data_Analytics_Gerald_Amadeo_Passover_Sutanto_-_2802457740.pdf" download>📄 PDF Report</a>
+            <a href="Group_4_DA_UAS.ipynb" download>📓 Jupyter Notebook</a>
+            <a href="clean_cafe_sales.csv" download>📊 CSV Data</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GitHub Projects Section -->
   <section id="projects" class="reveal">
     <div class="section-wrapper">
-      <h2>Projects</h2>
+      <h2>GitHub Projects</h2>
       <div class="projects-gallery" id="github-repos">
         <div class="loader">Memuat repositori...</div>
       </div>
@@ -498,7 +679,7 @@
         <a href="https://github.com/Azabutayo" target="_blank" rel="noopener noreferrer" class="contact-link">
           🐙 GitHub
         </a>
-        <a href="mailto:gerald@example.com" class="contact-link">
+        <a href="mailto:gerald.sutanto@binus.ac.id" class="contact-link">
           ✉️ Email
         </a>
       </div>
@@ -513,7 +694,7 @@
     // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Scroll Reveal Animation (Intersection Observer)
+    // Scroll Reveal Animation
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -530,42 +711,7 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Carousel (Hero Gallery)
-    const carouselInner = document.getElementById('carouselInner');
-    const carouselControls = document.getElementById('carouselControls');
-    const items = carouselInner.querySelectorAll('.carousel-item');
-    let currentIndex = 0;
-
-    items.forEach((_, index) => {
-      const dot = document.createElement('button');
-      dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
-      dot.addEventListener('click', () => goToSlide(index));
-      carouselControls.appendChild(dot);
-    });
-
-    function goToSlide(index) {
-      currentIndex = index;
-      updateCarousel();
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % items.length;
-      updateCarousel();
-    }
-
-    function updateCarousel() {
-      items.forEach((item, index) => {
-        item.classList.toggle('active', index === currentIndex);
-      });
-      document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
-      });
-    }
-
-    // Auto rotate carousel every 5 seconds
-    setInterval(nextSlide, 5000);
-
-    // GitHub API - Fetch Repos
+    // GitHub API
     const USERNAME = 'Azabutayo';
     const REPOS_URL = `https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=6`;
     const reposContainer = document.getElementById('github-repos');
@@ -599,8 +745,6 @@
             </div>
           `;
           reposContainer.appendChild(card);
-          
-          // Observe new cards for reveal animation
           observer.observe(card);
         });
       } catch (error) {
@@ -618,7 +762,6 @@
       document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Load repos on page load
     loadRepos();
   </script>
 </body>
